@@ -37,6 +37,8 @@ int main() {
 	int posTower = -1; //타워 위치
     int last_pos = cat;     // 전 턴 고양이 위치
     int was_home = 0;       // 이전 턴에도 집에 있었는지 여부
+	int hasToyMouse = 0; // 장난감 쥐 0
+	int hasToyLaser = 0; // 장난감 레이저 0
 
     srand((unsigned int)time(NULL));
 
