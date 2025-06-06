@@ -41,7 +41,7 @@ int main() {
     srand((unsigned int)time(NULL));
 
     while (1) {
-
+        //상태창 출력
         printf("==================== 현재상태===================\n");
         printf("현재까지 만든 수프: %d개\n", soup);
         printf("CP: %d 포인트\n", cp);
@@ -64,7 +64,7 @@ int main() {
         }
 
         printf("================================================\n");
-
+        //기분 
         int mood_before = mood;
         int mood_threshold = 6 - relationship;
         dice = rand() % 6 + 1;
@@ -91,7 +91,7 @@ int main() {
 
         dice = rand() % 6 + 1;
         printf("%d(이)가 나왔습니다.\n", dice);
-
+        //이동
         foot = cat;
         if (mood == 0) {
             if (cat > HME_POS) {
@@ -124,6 +124,8 @@ int main() {
                 cat++;
                 printf("쫀떡은 골골송을 부르며 수프를 만들러 갑니다.\n");
             }
+            //행동
+
             else {
                 printf("쫀떡은 이미 냄비 앞에 있습니다.\n");
             }
@@ -150,6 +152,7 @@ int main() {
         }
 
 
+        //방 그리기
         for (int i = 0; i < ROOM_WIDTH; i++) {
             printf("#");
         }
