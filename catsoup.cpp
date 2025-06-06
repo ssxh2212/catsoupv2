@@ -40,6 +40,14 @@ int main() {
         printf("현재까지 만든 수프: %d개\n", soup);
         printf("CP: %d 포인트\n", cp);
         printf("집사와의 관계(0~4): %d\n", relationship);
+        printf("쫀떡이 기분(0~3): %d\n", mood);
+
+        switch (mood) {
+        case 3: printf("골골송을 부릅니다.\n"); break;
+        case 2: printf("기분이 좋아 보입니다.\n"); break;
+        case 1: printf("약간 예민해졌습니다.\n"); break;
+        case 0: printf("화가 많이 났습니다!\n"); break;
+        }
 
         if (relationship == 0) {
             printf("곁에 오는 것조차 싫어합니다.\n");
