@@ -43,6 +43,40 @@ int main() {
     srand((unsigned int)time(NULL));
 
     while (1) {
+        turn++;
+        if (turn % 3 == 0) {
+            printf("\n== 3턴마다 하는 가위바위보 대결 ==\n");
+            printf("가위(0), 바위(1), 보(2) 중 선택하세요:\n");
+            int user_rps = -1;
+            while (1) {
+                printf(">> ");
+                scanf_s("%d", &user_rps);
+                if (user_rps >= 0 && user_rps <= 2) break;
+                printf("잘못된 입력입니다. 0, 1, 2 중 하나를 입력하세요.\n");
+            }
+
+            int comp_rps = rand() % 3;
+            const char* rps_str[] = { "가위", "바위", "보" };
+            printf("컴퓨터: %s\n", rps_str[comp_rps]);
+
+          
+            if (user_rps == comp_rps) {
+                printf("비겼습니다.\n");
+            }
+            else if ((user_rps == 0 && comp_rps == 2) ||
+                (user_rps == 1 && comp_rps == 0) ||
+                (user_rps == 2 && comp_rps == 1)) {
+                printf("이겼습니다! 집사와의 관계가 좋아집니다.\n");
+                if (relationship < 4) relationship++;
+            }
+            else {
+                printf("졌습니다! 집사와의 관계가 나빠집니다.\n");
+                if (relationship > 0) relationship--;
+            }
+
+            printf("현재 집사와의 관계: %d\n\n", relationship);
+        }
+
         //상태창 출력
         printf("==================== 현재상태===================\n");
         printf("현재까지 만든 수프: %d개\n", soup);
@@ -421,6 +455,7 @@ int main() {
             }
 
             break;  // 구매 한번 하고 상점 종료
+
         }
 
     }
