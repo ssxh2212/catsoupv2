@@ -13,7 +13,7 @@ int main() {
     printf("         /\\_/\\\n");
     printf("  /\\\    / o o \\\n");
     printf(" //\\\\\   \\~(*)~/\n");
-    printf(" `   \\/    ^ /\n");
+    printf("    \\/    ^ /\n");
     printf("     |  \\|| ||\n");
     printf("     \\ ' || ||\n");
     printf("      \\) ()-())\n");
@@ -30,16 +30,16 @@ int main() {
     int foot; // 발자국
     int choose = 5;
     int cp = 0; // 자원 포인트 
-	int mood = 3; // 기분
+    int mood = 3; // 기분
     int hasScratcher = 0; //스크래처 O
-	int hasTower = 0; //타워 O
-	int posScratcher = -1; //스크래처 위치
-	int posTower = -1; //타워 위치
+    int hasTower = 0; //타워 O
+    int posScratcher = -1; //스크래처 위치
+    int posTower = -1; //타워 위치
     int last_pos = cat;     // 전 턴 고양이 위치
     int was_home = 0;       // 이전 턴에도 집에 있었는지 여부
-	int hasToyMouse = 0; // 장난감 쥐 0
-	int hasToyLaser = 0; // 장난감 레이저 0
-
+    int hasToyMouse = 0; // 장난감 쥐 0
+    int hasToyLaser = 0; // 장난감 레이저 0
+	int turn = 0; // 턴 수
     srand((unsigned int)time(NULL));
 
     while (1) {
@@ -423,6 +423,6 @@ int main() {
             break;  // 구매 한번 하고 상점 종료
         }
 
-}
+    }
     return 0;
 }
