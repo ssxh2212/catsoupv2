@@ -221,50 +221,59 @@ int main() {
 
         Sleep(500); //0.5초 대기
 
+        while (1) {
+            printf("어떤 상호작용을 하시겠습니까?\n");
+            printf("0. 아무것도 하지 않음\n");
+            printf("1. 긁어 주기\n");
 
-        printf("어떤 상호작용을 하시겠습니까?    0. 아무것도 하지 않음    1. 긁어주기\n>> ");
-        scanf_s("%d", &choose);
+            if (hasToyMouse && hasToyLaser) {
+                printf("2. 장난감 쥐로 놀아 주기\n");
+                printf("3. 레이저 포인터로 놀아 주기\n");
+            }
+            else if (hasToyMouse) {
+                printf("2. 장난감 쥐로 놀아 주기\n");
+            }
+            else if (hasToyLaser) {
+                printf("2. 레이저 포인터로 놀아 주기\n");
+            }
 
-        while (choose != 0 && choose != 1) {
             printf(">> ");
             scanf_s("%d", &choose);
+
+            if (hasToyMouse && hasToyLaser) {
+                if (choose >= 0 && choose <= 3) break;
+            }
+            else if (hasToyMouse || hasToyLaser) {
+                if (choose >= 0 && choose <= 2) break;
+            }
+            else {
+                if (choose == 0 || choose == 1) break;
+            }
+            printf("잘못된 입력입니다. 다시 입력해 주세요.\n");
         }
 
         switch (choose) {
         case 0:
-            printf("아무것도 하지 않음\n");
-            printf("4/6의 확률로 친밀도가 떨어집니다.\n");
-            printf("주사위를 돌립니다. 또르륵...\n");
-            dice = rand() & 6 + 1;
-            printf("%d가 나왔습니다.\n", dice);
-            if (dice <= 4) {
-                printf("친밀도가 떨어집니다.\n");
-                if (relationship > 0) {
-                    relationship--;
-                }
-            }
-            else {
-                printf("다행이도 친밀도가 떨어지지 않았습니다.\n");
-            }
+            printf("아무것도 하지 않습니다.\n");
+            // 추가 친밀도 감소 로직 있으면 여기에 넣기
             break;
         case 1:
-            printf("쫀떡의 턱을 긁어주었습니다.\n");
-            printf("2/6의 확률로 친밀도가 높아집니다.\n");
-            printf("주사위를 돌립니다. 또르륵...\n");
-            dice = rand() % 6 + 1;
-            printf("%d가 나왔습니다.\n", dice);
-            if (dice >= 5) {
-                printf("친밀도가 높아집니다\n");
-                if (relationship <= 3) {
-                    relationship++;
-                }
+            printf("긁어 주었습니다.\n");
+            // 친밀도 증가 로직 있으면 여기에 넣기
+            break;
+        case 2:
+            if (hasToyMouse) {
+                printf("장난감 쥐로 놀아 주었습니다.\n");
             }
-            else {
-                printf("친밀도는 그대로입니다.\n");
+            else if (hasToyLaser) {
+                printf("레이저 포인터로 놀아 주었습니다.\n");
             }
             break;
+        case 3:
+            printf("레이저 포인터로 놀아 주었습니다.\n");
+            break;
         }
-        printf("현재 친밀도 : %d\n", relationship);
+
         Sleep(2500);
         system("cls");
     }
