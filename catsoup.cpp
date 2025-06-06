@@ -59,6 +59,26 @@ int main() {
 
         printf("================================================\n");
 
+        int mood_before = mood;
+        int mood_threshold = 6 - relationship;
+        dice = rand() % 6 + 1;
+        printf("%d-%d: 주사위 눈이 %d이하이면 그냥 기분이 나빠집니다.\n", 6, relationship, mood_threshold);
+        printf("주사위를 굴립니다. 또르르...\n");
+        printf("%d이(가) 나왔습니다.\n", dice);
+        if (dice <= mood_threshold) {
+            if (mood > 0) {
+                mood--;
+                printf("쫀떡의 기분이 나빠집니다: %d->%d\n", mood_before, mood);
+            }
+            else {
+                printf("쫀떡의 기분은 이미 최악입니다...\n");
+            }
+        }
+        else {
+            printf("쫀떡은 아직 기분이 괜찮은 것 같습니다.\n");
+        }
+
+
         printf("쫀떡 이동: 집사와 친밀할수록 냄비 쪽으로 갈 확률이 높아집니다.\n");
         printf("주사위 눈이 %d 이상이면 냄비 쪽으로 이동합니다 \n", 6 - relationship);
         printf("주사위를 굴립니다. 또르륵...\n");
@@ -96,6 +116,7 @@ int main() {
         if (cat == HME_POS) {
             printf("쫀떡은 자신의 집에서 편안함을 느낍니다.\n");
         }
+
 
         for (int i = 0; i < ROOM_WIDTH; i++) {
             printf("#");
@@ -142,6 +163,7 @@ int main() {
 
 
         Sleep(500); //0.5초 대기
+
 
         printf("어떤 상호작용을 하시겠습니까?    0. 아무것도 하지 않음    1. 긁어주기\n>> ");
         scanf_s("%d", &choose);
