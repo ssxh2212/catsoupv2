@@ -29,6 +29,8 @@ int main() {
     int dice;//주사위
     int foot; // 발자국
     int choose = 5;
+    int cp = 0; // 자원 포인트 
+	int mood = 3; // 기분
 
     srand((unsigned int)time(NULL));
 
