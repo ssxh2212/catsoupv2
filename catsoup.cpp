@@ -252,31 +252,69 @@ int main() {
             printf("잘못된 입력입니다. 다시 입력해 주세요.\n");
         }
 
+        dice = rand() % 6 + 1;  // 1~6 주사위
+
         switch (choose) {
-        case 0:
-            printf("아무것도 하지 않습니다.\n");
-            // 추가 친밀도 감소 로직 있으면 여기에 넣기
-            break;
-        case 1:
-            printf("긁어 주었습니다.\n");
-            // 친밀도 증가 로직 있으면 여기에 넣기
-            break;
-        case 2:
-            if (hasToyMouse) {
-                printf("장난감 쥐로 놀아 주었습니다.\n");
+        case 0:  // 아무것도 하지 않음
+            if (mood > 0) {
+                printf("쫀떡의 기분이 나빠졌습니다: %d->%d\n", mood, mood - 1);
+                mood--;
             }
-            else if (hasToyLaser) {
-                printf("레이저 포인터로 놀아 주었습니다.\n");
+            else {
+                printf("쫀떡의 기분은 이미 최악입니다: %d\n", mood);
+            }
+            if (dice <= 5) {
+                if (relationship > 0) {
+                    printf("집사와의 관계가 나빠집니다.\n");
+                    relationship--;
+                }
             }
             break;
-        case 3:
-            printf("레이저 포인터로 놀아 주었습니다.\n");
+
+        case 1:  // 긁어 주기
+            printf("쫀떡의 기분은 그대로입니다: %d\n", mood);
+            if (dice >= 5) {
+                if (relationship < 4) {
+                    relationship++;
+                    printf("집사와의 관계가 좋아졌습니다: %d\n", relationship);
+                }
+            }
+            break;
+
+        case 2:  // 장난감 쥐로 놀아 주기 or 레이저 포인터 중 하나
+            if (hasToyMouse && (choose == 2)) {
+                printf("장난감 쥐로 쫀떡과 놀아 주었습니다. ");
+                if (mood < 3) {
+                    printf("쫀떡의 기분이 조금 좋아졌습니다: %d->%d\n", mood, mood + 1);
+                    mood++;
+                }
+                else {
+                    printf("쫀떡의 기분은 최고입니다: %d\n", mood);
+                }
+                if (dice >= 4) {
+                    if (relationship < 4) {
+                        relationship++;
+                        printf("집사와의 관계가 좋아졌습니다: %d\n", relationship);
+                    }
+                }
+            }
+            else if (hasToyLaser && ((choose == 2 && !hasToyMouse) || choose == 3)) {
+                int oldMood = mood;
+                mood += 2;
+                if (mood > 3) mood = 3;
+                printf("레이저 포인터로 쫀떡과 신나게 놀아 주었습니다. 쫀떡의 기분이 꽤 좋아졌습니다: %d->%d\n", oldMood, mood);
+                if (dice >= 2) {
+                    if (relationship < 4) {
+                        relationship++;
+                        printf("집사와의 관계가 좋아졌습니다: %d\n", relationship);
+                    }
+                }
+            }
             break;
         }
 
         Sleep(2500);
         system("cls");
-    }
-
+}
     return 0;
 }
