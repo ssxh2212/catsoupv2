@@ -90,16 +90,6 @@ int main() {
         dice = rand() % 6 + 1;
         printf("%d(이)가 나왔습니다.\n", dice);
 
-        foot = cat;
-
-        if (dice >= 6 - relationship) {
-            if (cat < BWL_PO)
-                cat++;
-            printf("냄비 쪽으로 움직입니다.\n");
-        }
-        else if (cat != HME_POS) {
-            cat--;
-        }
 
         if (cat == BWL_PO) {
             soup++;
