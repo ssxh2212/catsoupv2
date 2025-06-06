@@ -321,6 +321,108 @@ int main() {
 
         Sleep(2500);
         system("cls");
+
+
+        while (1) {
+            printf("상점에서 물건을 살 수 있습니다.\n");
+            printf("어떤 물건을 구매할까요?\n");
+
+            printf("0. 아무 것도 사지 않는다.\n");
+
+            printf("1. 장난감 쥐: 1 CP");
+            if (hasToyMouse) printf(" (품절)");
+            printf("\n");
+
+            printf("2. 레이저 포인터: 2 CP");
+            if (hasToyLaser) printf(" (품절)");
+            printf("\n");
+
+            printf("3. 스크래처: 4 CP");
+            if (hasScratcher) printf(" (품절)");
+            printf("\n");
+
+            printf("4. 캣 타워: 6 CP");
+            if (hasTower) printf(" (품절)");
+            printf("\n");
+
+            printf(">> ");
+
+            int shop_choice;
+            scanf_s("%d", &shop_choice);
+
+            if (shop_choice < 0 || shop_choice > 4) {
+                printf("잘못된 입력입니다. 다시 입력해 주세요.\n");
+                continue;
+            }
+
+            if (shop_choice == 0) {
+                printf("상점 이용을 종료합니다.\n");
+                break;
+            }
+
+            // 이미 구매했는지 확인
+            if ((shop_choice == 1 && hasToyMouse) ||
+                (shop_choice == 2 && hasToyLaser) ||
+                (shop_choice == 3 && hasScratcher) ||
+                (shop_choice == 4 && hasTower)) {
+                printf("이미 구매한 물건입니다.\n");
+                continue;
+            }
+
+            // CP 확인 및 구매
+            int cost = 0;
+            switch (shop_choice) {
+            case 1: cost = 1; break;
+            case 2: cost = 2; break;
+            case 3: cost = 4; break;
+            case 4: cost = 6; break;
+            }
+
+            if (cp < cost) {
+                printf("CP가 부족합니다.\n");
+                continue;
+            }
+
+            // 구매 처리
+            cp -= cost;
+            switch (shop_choice) {
+            case 1:
+                hasToyMouse = 1;
+                printf("장난감 쥐를 구매했습니다. 보유 CP: %d 포인트\n", cp);
+                break;
+            case 2:
+                hasToyLaser = 1;
+                printf("레이저 포인터를 구매했습니다. 보유 CP: %d 포인트\n", cp);
+                break;
+            case 3:
+                hasScratcher = 1;
+                // 스크래처 위치 무작위 지정 (기존 가구, 집, 냄비 위치 제외)
+                while (1) {
+                    int pos = rand() % (ROOM_WIDTH - 2) + 2; // 2부터 ROOM_WIDTH-2까지 (집1, 냄비는 ROOM_WIDTH-2)
+                    if (pos != posTower && pos != HME_POS && pos != BWL_PO) {
+                        posScratcher = pos;
+                        break;
+                    }
+                }
+                printf("스크래처를 구매했습니다. 위치: %d 보유 CP: %d 포인트\n", posScratcher, cp);
+                break;
+            case 4:
+                hasTower = 1;
+                // 캣타워 위치 무작위 지정 (기존 가구, 집, 냄비 위치 제외)
+                while (1) {
+                    int pos = rand() % (ROOM_WIDTH - 2) + 2;
+                    if (pos != posScratcher && pos != HME_POS && pos != BWL_PO) {
+                        posTower = pos;
+                        break;
+                    }
+                }
+                printf("캣 타워를 구매했습니다. 위치: %d 보유 CP: %d 포인트\n", posTower, cp);
+                break;
+            }
+
+            break;  // 구매 한번 하고 상점 종료
+        }
+
 }
     return 0;
 }
