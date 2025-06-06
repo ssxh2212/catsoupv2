@@ -124,34 +124,54 @@ int main() {
                 cat++;
                 printf("쫀떡은 골골송을 부르며 수프를 만들러 갑니다.\n");
             }
-            //행동
+
 
             else {
                 printf("쫀떡은 이미 냄비 앞에 있습니다.\n");
             }
+        }
+        //행동
+        if (cat == HME_POS) {
+            if (was_home) {
+                if (mood < 3) {
+                    printf("쫀떡은 집에서 한 턴을 쉬었습니다. 기분이 조금 나아집니다: %d->%d\n", mood, mood + 1);
+                    mood++;
+                }
+            }
+            was_home = 1;
+        }
+        else {
+            was_home = 0;
         }
 
         if (cat == BWL_PO) {
             soup++;
             dice = rand() % 3 + 1;
             switch (dice) {
-            case 1:
-                printf("쫀떡이 감자수프를 만들었습니다.\n");
-                break;
-            case 2:
-                printf("쫀떡이 양송이수프를 만들었습니다.\n");
-                break;
-            case 3:
-                printf("쫀떡이 브로콜리수프를 만들었습니다.\n");
-                break;
+            case 1: printf("쫀떡이 감자수프를 만들었습니다.\n"); break;
+            case 2: printf("쫀떡이 양송이수프를 만들었습니다.\n"); break;
+            case 3: printf("쫀떡이 브로콜리수프를 만들었습니다.\n"); break;
             }
             printf("현재까지 만든 수프: %d\n", soup);
         }
-        if (cat == HME_POS) {
-            printf("쫀떡은 자신의 집에서 편안함을 느낍니다.\n");
+
+        if (cat == posScratcher) {
+            if (mood < 3) {
+                printf("쫀떡은 스크래처를 긁고 놀았습니다.\n");
+                printf("기분이 조금 좋아졌습니다: %d->%d\n", mood, mood + 1);
+                mood++;
+            }
         }
 
-
+        if (cat == posTower) {
+            if (mood < 3) {
+                int before = mood;
+                mood += 2;
+                if (mood > 3) mood = 3;
+                printf("쫀떡은 캣타워를 뛰어다닙니다.\n");
+                printf("기분이 제법 좋아졌습니다: %d->%d\n", before, mood);
+            }
+        }
         //방 그리기
         for (int i = 0; i < ROOM_WIDTH; i++) {
             printf("#");
