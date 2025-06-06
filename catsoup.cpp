@@ -35,6 +35,8 @@ int main() {
 	int hasTower = 0; //타워 O
 	int posScratcher = -1; //스크래처 위치
 	int posTower = -1; //타워 위치
+    int last_pos = cat;     // 전 턴 고양이 위치
+    int was_home = 0;       // 이전 턴에도 집에 있었는지 여부
 
     srand((unsigned int)time(NULL));
 
