@@ -313,6 +313,12 @@ int main() {
             break;
         }
 
+        int cp_gain = (mood > 0 ? mood - 1 : 0) + relationship;
+        cp += cp_gain;
+        printf("쫀떡의 기분과 친밀도에 따라서 CP가 %d 포인트 생산되었습니다.\n", cp_gain);
+        printf("보유 CP: %d 포인트\n", cp);
+
+
         Sleep(2500);
         system("cls");
 }
