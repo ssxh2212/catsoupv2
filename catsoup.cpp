@@ -90,6 +90,42 @@ int main() {
         dice = rand() % 6 + 1;
         printf("%d(이)가 나왔습니다.\n", dice);
 
+        foot = cat;
+        if (mood == 0) {
+            if (cat > HME_POS) {
+                cat--;
+                printf("기분이 매우 나쁜 쫀떡은 집으로 향합니다.\n");
+            }
+            else {
+                printf("쫀떡은 이미 집에 있습니다.\n");
+            }
+        }
+        else if (mood == 1) {
+            if (!hasScratcher && !hasTower) {
+                printf("쫀떡은 심심하지만 놀 거리가 없어서 기분이 매우 나빠집니다.\n");
+                if (mood > 0) mood--;
+            }
+            else {
+                int distS = hasScratcher ? abs(cat - posScratcher) : ROOM_WIDTH + 1;
+                int distT = hasTower ? abs(cat - posTower) : ROOM_WIDTH + 1;
+                int target = (distS <= distT) ? posScratcher : posTower;
+                if (cat < target) cat++;
+                else if (cat > target) cat--;
+                printf("쫀떡은 심심해서 놀이기구 쪽으로 이동합니다.\n");
+            }
+        }
+        else if (mood == 2) {
+            printf("쫀떡은 기분 좋게 식빵을 굽고 있습니다.\n");
+        }
+        else if (mood == 3) {
+            if (cat < BWL_PO) {
+                cat++;
+                printf("쫀떡은 골골송을 부르며 수프를 만들러 갑니다.\n");
+            }
+            else {
+                printf("쫀떡은 이미 냄비 앞에 있습니다.\n");
+            }
+        }
 
         if (cat == BWL_PO) {
             soup++;
