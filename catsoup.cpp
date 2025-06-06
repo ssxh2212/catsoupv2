@@ -38,6 +38,7 @@ int main() {
 
         printf("==================== 현재상태===================\n");
         printf("현재까지 만든 수프: %d개\n", soup);
+        printf("CP: %d 포인트\n", cp);
         printf("집사와의 관계(0~4): %d\n", relationship);
 
         if (relationship == 0) {
