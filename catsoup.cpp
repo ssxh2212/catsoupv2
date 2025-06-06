@@ -31,6 +31,10 @@ int main() {
     int choose = 5;
     int cp = 0; // 자원 포인트 
 	int mood = 3; // 기분
+    int hasScratcher = 0; //스크래처 O
+	int hasTower = 0; //타워 O
+	int posScratcher = -1; //스크래처 위치
+	int posTower = -1; //타워 위치
 
     srand((unsigned int)time(NULL));
 
